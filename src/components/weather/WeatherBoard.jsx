@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddToFavorite from "./AddToFavorite";
 import WeatherHeadline from "./WeatherHeadline";
 import WeatherCondition from "./WeatherCondition";
 import { useWeather } from "../../hooks";
+import { weatherContext } from "../../context";
 
 export default function WeatherBoard() {
- const { weatherData, error, loading } = useWeather();
- console.log(weatherData, error, loading);
+ const { loading } = useContext(weatherContext);
 
  return (
   <main>
@@ -20,8 +20,15 @@ export default function WeatherBoard() {
          <AddToFavorite />
         </div>
        </div>
-       <WeatherHeadline />
-       <WeatherCondition />
+       {loading?.state ? (
+        <>{loading.message}</>
+       ) : (
+        <>
+         {" "}
+         <WeatherHeadline />
+         <WeatherCondition />
+        </>
+       )}
       </div>
      </div>
     </div>

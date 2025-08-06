@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { weatherContext } from "../../context";
 
 export default function WeatherCondition() {
+ const { weatherData } = useContext(weatherContext);
+
+ const { maxTemperature, minTemperature, humidity, cloudPercentage, wind } =
+  weatherData || {};
  return (
   <div>
    <p className="text-sm lg:text-lg font-bold uppercase mb-8">
@@ -10,35 +15,35 @@ export default function WeatherCondition() {
     <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
      <span>Temp max</span>
      <div className="inline-flex space-x-4">
-      <p>19°</p>
+      <p>{Math.round(maxTemperature)}°</p>
       <img src="/icons/temp-max.svg" alt="temp-max" />
      </div>
     </li>
     <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
      <span>Temp min</span>
      <div className="inline-flex space-x-4">
-      <p>19°</p>
+      <p>{Math.round(minTemperature)}°</p>
       <img src="/icons/temp-min.svg" alt="temp-min" />
      </div>
     </li>
     <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
      <span>Humadity</span>
      <div className="inline-flex space-x-4">
-      <p>58%</p>
+      <p>{humidity}%</p>
       <img src="/icons/humidity.svg" alt="humidity" />
      </div>
     </li>
     <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
      <span>Cloudy</span>
      <div className="inline-flex space-x-4">
-      <p>86%</p>
+      <p>{cloudPercentage}%</p>
       <img src="/icons/cloud.svg" alt="cloudy" />
      </div>
     </li>
     <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
      <span>Wind</span>
      <div className="inline-flex space-x-4">
-      <p>5km/h</p>
+      <p>{Math.round(wind)}km/h</p>
       <img src="/icons/wind.svg" alt="wind" />
      </div>
     </li>

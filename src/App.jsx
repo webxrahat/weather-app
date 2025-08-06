@@ -1,9 +1,10 @@
 import Root from "./components/Root";
+import { WeatherProvider } from "./provider";
 
 export default function App() {
  return (
-  <div>
+  <WeatherProvider>
    <Root />
-  </div>
+  </WeatherProvider>
  );
 }
